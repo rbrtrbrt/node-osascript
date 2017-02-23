@@ -42,10 +42,34 @@ module.exports = {
     test.done();
   },
 
-  parseEmpty : function(test){
+  parseNull : function(test){
     test.expect(1);
-    test.equals(serializeObject(null), '', "Nothing");
+    test.deepEqual(serializeObject(null),'null');
+    test.done();
+  },
+
+  parseNullInArray : function(test){
+    test.expect(1);
+    test.deepEqual(serializeObject(["Array","with a",null]),'{"Array","with a",null}');
+    test.done();
+  },
+
+  parseUndefinedInArray : function(test){
+    test.expect(2);
+    test.deepEqual(serializeObject(["Array","with a",undefined]),'{"Array","with a",missing value}');
+    test.deepEqual(serializeObject(["Array","with a",,"!!"]),'{"Array","with a",missing value,"!!"}');
+    test.done();
+  },
+
+  parseNullInObject : function(test){
+    test.expect(1);
+    test.equal(serializeObject({ field: 11, nullField: null}),'{field:11,nullField:null}');
+    test.done();
+  },
+
+  parseUndefinedInObject : function(test){
+    test.expect(1);
+    test.equal(serializeObject({ field: 11, undefField: undefined}),'{field:11,undefField:missing value}');
     test.done();
   }
-
 };

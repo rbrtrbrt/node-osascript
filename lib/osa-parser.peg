@@ -17,6 +17,8 @@ ws "whitespace" = [ \t\n\r]*
 value
   = false
   / true
+  / null
+  / missing_value
   / object
   / array
   / number
@@ -27,7 +29,8 @@ value
 
 false = "false" { return false; }
 true  = "true"  { return true;  }
-
+null  = "null" {return null;}
+missing_value = "missing value" {return undefined;}
 
 raw
  = ws chars:.* ws { return (chars.length > 0) ? chars.join('') : null; }

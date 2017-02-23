@@ -15,7 +15,7 @@ $ npm install node-osascript
 Execute AppleScript and use the results of the javascript in node.
 The result is transformed into a javascript object using PEG.js
 So AppleScript lists are transformed into an `Array`, Records into a plain `object` and
-Dates to the `Date` type as well as `Numbers`, `Booleans` and `Strings`.
+Dates to the `Date` type. `Numbers`, `Booleans` and `Strings` are converted, and `null` converts to `null`, and `missing value` to `undefined`.
 
 ## Examples
 

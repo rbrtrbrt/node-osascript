@@ -61,6 +61,30 @@ module.exports = {
     test.done();
   },
 
+  parseNull : function(test) {
+    test.expect(1);
+    test.equal(parse('null'),null);
+    test.done();
+  },
+
+  parseArrayWithNull: function(test) {
+    test.expect(1);
+    test.deepEqual(parse('{11,null,22}'),[11,null,22]);
+    test.done();
+  },
+
+  parseMissingValue : function(test) {
+    test.expect(1);
+    test.equal(parse('missing value'),undefined);
+    test.done();
+  },
+
+  parseArrayWithMissingValue: function(test) {
+    test.expect(1);
+    test.deepEqual(parse('{11,missing value,22}'),[11,undefined,22])
+    test.done();
+  },
+
   parseMultilineString: function(test) {
     test.expect(1);
     test.deepEqual(parse('{foo:"bar\n\tbaz"}'), {"foo": "bar\n\tbaz"}, "String with line-breaks and tab characters");
